@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аудиоплеер</title>
     <style>
         body {
             display: flex;
@@ -65,17 +66,30 @@
             "audio6.mp3",
             "audio7.mp3"
         ];
-        let currentIndex = 0;
+        function getParameterByName(name) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }
         function changeAudio(index) {
-            currentIndex = index;
-            document.getElementById("audio-source").src = files[currentIndex];
-            document.getElementById("audio-title").textContent = files[currentIndex];
-            document.getElementById("audio-player").load();
+            let audioSource = document.getElementById("audio-source");
+            let audioTitle = document.getElementById("audio-title");
+            let audioPlayer = document.getElementById("audio-player");
+            
+            audioSource.src = files[index];
+            audioTitle.textContent = files[index];
+            audioPlayer.load();
+        }
+        window.onload = function() {
+            let fileParam = getParameterByName("file");
+            if (fileParam && files.includes(fileParam)) {
+                changeAudio(files.indexOf(fileParam));
+            }
         }
     </script>
 </head>
 <body>
     <div class="player-container">
+        <h2>Прослушивание аудиофайла</h2>
         <div id="audio-title">Буклет - аудио Хомякова.mp3</div>
         <audio id="audio-player" controls>
             <source id="audio-source" src="Буклет - аудио Хомякова.mp3" type="audio/mpeg">
