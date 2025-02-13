@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Аудиоплеер</title>
     <style>
         body {
             display: flex;
@@ -11,28 +10,49 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
         }
         .player-container {
             text-align: center;
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        h2 {
+            margin-bottom: 15px;
+        }
+        #audio-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        audio {
+            width: 100%;
         }
         .navigation {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 10px;
+            margin-top: 20px;
         }
         .navigation button {
-            padding: 10px;
+            padding: 10px 15px;
             border: none;
-            background-color: #007bff;
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             border-radius: 5px;
             cursor: pointer;
+            transition: background 0.3s;
+            width: 200px;
+            text-align: center;
+        }
+        .navigation button:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
     </style>
     <script>
@@ -49,26 +69,27 @@
         function changeAudio(index) {
             currentIndex = index;
             document.getElementById("audio-source").src = files[currentIndex];
+            document.getElementById("audio-title").textContent = files[currentIndex];
             document.getElementById("audio-player").load();
         }
     </script>
 </head>
 <body>
     <div class="player-container">
-        <h2>Прослушивание аудиофайла</h2>
+        <div id="audio-title">Буклет - аудио Хомякова.mp3</div>
         <audio id="audio-player" controls>
             <source id="audio-source" src="Буклет - аудио Хомякова.mp3" type="audio/mpeg">
             Ваш браузер не поддерживает аудиоэлемент.
         </audio>
     </div>
     <div class="navigation">
-        <button onclick="changeAudio(0)">1</button>
-        <button onclick="changeAudio(1)">2</button>
-        <button onclick="changeAudio(2)">3</button>
-        <button onclick="changeAudio(3)">4</button>
-        <button onclick="changeAudio(4)">5</button>
-        <button onclick="changeAudio(5)">6</button>
-        <button onclick="changeAudio(6)">7</button>
+        <button onclick="changeAudio(0)">Буклет - аудио Хомякова</button>
+        <button onclick="changeAudio(1)">audio2.mp3</button>
+        <button onclick="changeAudio(2)">audio3.mp3</button>
+        <button onclick="changeAudio(3)">audio4.mp3</button>
+        <button onclick="changeAudio(4)">audio5.mp3</button>
+        <button onclick="changeAudio(5)">audio6.mp3</button>
+        <button onclick="changeAudio(6)">audio7.mp3</button>
     </div>
 </body>
 </html>
