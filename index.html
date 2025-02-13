@@ -7,6 +7,7 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -19,16 +20,55 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .navigation {
+            display: flex;
+            gap: 10px;
+        }
+        .navigation button {
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
+    <script>
+        let files = [
+            "Буклет - аудио Хомякова.mp3",
+            "audio2.mp3",
+            "audio3.mp3",
+            "audio4.mp3",
+            "audio5.mp3",
+            "audio6.mp3",
+            "audio7.mp3"
+        ];
+        let currentIndex = 0;
+        function changeAudio(index) {
+            currentIndex = index;
+            document.getElementById("audio-source").src = files[currentIndex];
+            document.getElementById("audio-player").load();
+        }
+    </script>
 </head>
 <body>
     <div class="player-container">
-        <h2>буклет</h2>
-        <audio controls>
-            <source src="Буклет - аудио Хомякова.mp3" type="audio/mpeg">
+        <h2>Прослушивание аудиофайла</h2>
+        <audio id="audio-player" controls>
+            <source id="audio-source" src="Буклет - аудио Хомякова.mp3" type="audio/mpeg">
             Ваш браузер не поддерживает аудиоэлемент.
         </audio>
+    </div>
+    <div class="navigation">
+        <button onclick="changeAudio(0)">1</button>
+        <button onclick="changeAudio(1)">2</button>
+        <button onclick="changeAudio(2)">3</button>
+        <button onclick="changeAudio(3)">4</button>
+        <button onclick="changeAudio(4)">5</button>
+        <button onclick="changeAudio(5)">6</button>
+        <button onclick="changeAudio(6)">7</button>
     </div>
 </body>
 </html>
